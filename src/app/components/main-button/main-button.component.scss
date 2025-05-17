@@ -1,0 +1,19 @@
+.button-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 10px;
+    background: #A93545;
+    color: #fff;
+    width:200px;
+}
+
+.button-text{
+    color: #FFF;
+    font-family: Inter;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
