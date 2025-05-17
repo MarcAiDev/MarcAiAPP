@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { MainButtonComponent } from "../../components/main-button/main-button.component";
 
 @Component({
@@ -9,5 +10,9 @@ import { MainButtonComponent } from "../../components/main-button/main-button.co
   styleUrl: './intro.component.scss'
 })
 export default class IntroComponent {
+  constructor(private router: Router) {}
 
+  gotologin() {
+    this.router.navigate(['login']);
+  }
 }
