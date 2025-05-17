@@ -1,7 +1,87 @@
 .login-page{
-    height: 100vh;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    justify-content: space-evenly;
+    height: 100vh;
+}
+
+.login-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+}
+.title{
+    color: #000;
+    font-family: Inter;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 2rem;
+}
+
+.change_password{
+    color: #022CFF;
+    font-family: Inter;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    align-self: flex-start;
+}
+
+.login-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
+    width: 199.411px;
+    height: 40.4px;
+    border-radius: 10px;
+    background-color: #A93545;
+    
+}
+
+.button-text{
+    color: white;
+    font-family: inter; 
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.divider-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+
+.divider{
+    width: 50px;
+    height: 1px;
+    background-color: #AEAEAE;
+}
+
+.divider-text{
+    color: #AEAEAE;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.register-text{
+    color: #000;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }
