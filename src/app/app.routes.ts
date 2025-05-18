@@ -13,5 +13,9 @@ export const routes: Routes = [
     {
         path: 'login',
         loadComponent: () => import('./pages/login/login.component')
+    },
+    {
+        path: 'creator',
+        loadComponent: () => import('./pages/map-creator/map-creator.component')
     }
 ];

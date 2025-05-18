@@ -1,0 +1,39 @@
+<div class="map-creator-layout">
+    <!-- Painel de controle + Canvas -->
+    <div class="main-area">
+        <div class="controls">
+            <button (click)="addBox()">Adicionar Quadrado</button>
+            <button (click)="deleteSelected()">Excluir Quadrado</button>
+            <button (click)="logSelectedInfo()">Ver informações do(s) quadrado(s)</button>
+            <input type="file" (change)="onImageSelect($event)" />
+        </div>
+
+        <!-- Canvas Konva -->
+        <div #containerRef class="canvas-area"></div>
+    </div>
+
+    <!-- Sidebar de edição -->
+    @if(selectedShapes.length === 1){
+        <form class="sidebar" [formGroup]="form">
+            <h3>Editar Quadrado</h3>
+            <label>
+                Nome:
+                <input formControlName="nome" />
+            </label>
+            <label>
+                Tipo:
+                <input formControlName="tipo" />
+            </label>
+            <label>
+                Observação:
+                <textarea formControlName="observacao"></textarea>
+            </label>
+            <label>
+                Imagem:
+                <input type="file" (change)="onImageSelect($event)" />
+            </label>
+            <button (click)="aplicarEdicao()">Aplicar</button>
+        </form>
+
+    }
+</div>
