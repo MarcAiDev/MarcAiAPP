@@ -14,6 +14,6 @@ export default class LoginComponent {
   constructor(private router: Router) { }
 
   handlelogin() {
-    this.router.navigate(['']); // colocar rota da tela 
+    this.router.navigate(['']); 
   }
 }

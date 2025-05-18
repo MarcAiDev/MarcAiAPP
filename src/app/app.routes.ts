@@ -13,5 +13,9 @@ export const routes: Routes = [
     {
         path: 'login',
         loadComponent: () => import('./pages/login/login.component')
+    },
+    {
+        path: 'cadastro',
+        loadComponent: () => import('./pages/register/register.component')
     }
 ];
