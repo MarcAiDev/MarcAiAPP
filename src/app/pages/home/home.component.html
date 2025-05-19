@@ -1,37 +1,51 @@
-<div class="teste">
+<div class="home-container">
     <div class="user-info">
-        <div class="icon-wrapper">
-            <img src="assets/user_icon.png" alt="" class="icon">
+        <div class="user-wrapper">
+            <img src="assets/user-photo.png" alt="user-icon">
+            <span class="user-info-text">Olá, Matheus!</span>
         </div>
-        <span class="user-text">Olá Matheus!</span>
-        
+        <img src="assets/logo.png" alt="Logo" class="logo">
     </div>
 
-    <div class="texto">
-        <span class="texto">O que você quer descobrir hoje?</span>
-    </div>
+    <h2 class="title">
+        O que você quer descobrir hoje?
+    </h2>
 
     <app-search-bar/>
 
-    <div class="conteudo">
-        <div class="categoria">
-            <span class="categoria-texto">Pra você</span>
-            <span class="categoria-texto-2">Ver tudo</span>
+    <div class="category">
+        <span class="sub-title">Escolha a categoria</span>
+        <span class="sub-title-2">Ver tudo</span>
+    </div>
+
+    <div class="card-scroll-container">
+        <div class="card" *ngFor="let item of items">
+            <div class="img-wrapper">
+                <img src="assets/market-icon.png" alt="icon" class="category-icon">
+            </div>
+            <span class="category-text">{{item}}</span>
         </div>
     </div>
 
-    <div class="for-you">
-        <div class="shop">
-            <img src="assets/veroPeso.png" alt="">
-
-            <div class="description">
-                <span class="description-title">Ver-o-Peso</span>
-                <span class="isOpen">Aberto</span>
-                <span class="description-text">
-                    O maior mercado a céu aberto da América Latina, cheio de cultura, sabores e tradições paraenses.
-                </span>
+    <div class="card-scroll-container">
+        <div class="favorite-card" *ngFor="let card of cards">
+            <img [src]="card.imagem" alt="image" class="card-image">
+            <div class="card-content">
+                <h3 class="favorite-card-title">{{card.nome}}</h3>
+                <div class="location-text-wrapper">
+                    <img src="assets/location.png" alt="location">
+                    <span class="location">{{card.local}}</span>
+                </div>
+                <span class="rating">{{card.nota}} ⭐</span>
             </div>
         </div>
     </div>
-    
+
+    <div class="category">
+        <span class="sub-title">Para você</span>
+        <span class="sub-title-2">Ver tudo</span>
+    </div>
+
+    <app-for-you/>
 </div>
+<app-navbar/>

@@ -12,7 +12,7 @@ input {
   padding: 0 12px;
   border: 1px solid #ccc;
   border-right: none;
-  border-radius: 8px 0 0 8px;
+  border-radius: 15px 0 0 15px;
   outline: none;
   font-size: 16px;
   font-family: Inter, sans-serif;
@@ -27,8 +27,8 @@ input {
   padding: 0 14px;
   border: 1px solid #ccc;
   border-left: none;
-  border-radius: 0 8px 8px 0;
-  background-color: #fff;
+  border-radius: 0 15px 15px 0;
+  background: var(--Primary-Black-10, #FAFAFA);
 }
 
 .image-container img {

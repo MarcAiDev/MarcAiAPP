@@ -21,5 +21,9 @@ export const routes: Routes = [
     {
         path: 'home',
         loadComponent: () => import('./pages/home/home.component')
+    },
+    {
+        path: 'perfil',
+        loadComponent: () => import('./pages/profile/profile.component')
     }
 ];
