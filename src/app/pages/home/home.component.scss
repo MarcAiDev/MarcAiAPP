@@ -1,0 +1,218 @@
+.home-container{
+    padding: 1rem;
+    padding-bottom: 64px;
+}
+
+.user-info{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.logo{
+    height: 1.2rem;
+    width: 6rem;
+}
+
+.user-wrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.user-info-text{
+    color: var(--Black, #1B1B1D);
+    text-align: center;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Urbanist;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px; /* 125% */
+    letter-spacing: 0.2px;
+    margin-left: 8px;
+}
+
+.title{
+    color: #000;
+    font-family: Urbanist;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 34px;
+    
+}
+
+.category{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.category-icon{
+    height: 24px;
+    width: 24px;
+}
+
+.category-text{
+    color: var(--Black, #1B1B1D);
+    font-family: Urbanist;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 22px; /* 183.333% */
+    letter-spacing: 0.12px;
+}
+
+.sub-title{
+    color: #000;
+
+    /* Headline-500 */
+    font-family: Urbanist;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 26px; /* 162.5% */
+    letter-spacing: 0.16px;
+}
+
+.sub-title-2{
+    color: #BABABA;
+
+    /* Headline-400 */
+    font-family: Urbanist;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px; /* 171.429% */
+    letter-spacing: 0.14px;
+}
+
+.card-scroll-container{
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 12px;
+    scroll-behavior: smooth;
+    margin-top: 1rem;
+}
+
+.card {
+    display: inline-flex; /* importante: use inline-flex ao invés de flex */
+    height: 54px;
+    padding: 5px 8px;
+    align-items: center;
+    gap: 8px;
+    border-radius: 15px;
+    border: 1px solid var(--Primary-Black-200, #E8E8E8);
+    background: var(--Primary-Black-0, #FFF);
+    white-space: nowrap;
+    width: auto;         /* deixa o conteúdo definir a largura */
+    flex-shrink: 0;      /* impede o card de encolher */
+}
+
+
+
+.card-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.img-wrapper{
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    border-radius: 15px;
+    background: #FAFAFA;
+}
+
+.favorite-card {
+  position: relative;
+  width: 200px;
+  height: 280px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  margin-top: 1rem;
+  flex-shrink: 0;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 12px;
+  color: white;
+  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+  width: 100%;
+}
+
+.location-text-wrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.favorite-card-title {
+    color: var(--Primary-Black-0, #FFF);
+
+    /* Headline/500 */
+    font-family: Urbanist;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 30px; /* 150% */
+    letter-spacing: 0.2px;
+    margin-bottom: 0;
+}
+
+.location {
+    color: var(--Primary-Black-0, #FFF);
+
+    /* Headline/100 */
+    font-family: Urbanist;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 25px; /* 208.333% */
+    letter-spacing: 0.12px;
+    margin-left: 5PX;
+}
+
+.rating {
+    color: var(--Primary-Black-0, #FFF);
+    font-family: Urbanist;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.for-you{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.for-you-card{
+    width: 326px;
+    height: 155px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    border: 1px solid var(--Primary-Black-100, #F3F3F3);
+    background: var(--Primary-Black-0, #FFF);
+}

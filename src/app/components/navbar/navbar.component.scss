@@ -1,0 +1,47 @@
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 64px;
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 1px solid #ddd;
+  z-index: 100;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 16px;
+  gap: 8px;
+  border-radius: 24px;
+  color: black;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.nav-item .icon {
+  width: 24px;
+  height: 24px;
+}
+
+.nav-item.active {
+  background-color: black;
+  color: white;
+}
+
+.nav-item.active .icon {
+  filter: brightness(0) invert(1); /* Deixa o ícone branco */
+}
+
+span{
+    color: var(--white-1, #FFF);
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}

@@ -1,0 +1,24 @@
+<div class="for-you">
+  <div class="for-you-card" *ngFor="let item of cards">
+    <img [src]="item.imagem" alt="Imagem do local" class="card-img" />
+
+    <div class="card-info">
+      <div class="card-header">
+        <h3 class="card-title">{{ item.nome }}</h3>
+      </div>
+
+      <span class="card-status" [ngClass]="item.status === 'Aberto' ? 'open' : 'closed'">
+        {{ item.status }}
+      </span>
+
+      <div class="card-rating">
+        <span class="rating">{{ item.nota }}</span>
+        <img src="assets/star.png" alt="star">
+      </div>
+
+      <p class="card-description">
+        {{ item.descricao }}
+      </p>
+    </div>
+  </div>
+</div>

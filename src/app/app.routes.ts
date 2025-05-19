@@ -17,5 +17,13 @@ export const routes: Routes = [
     {
         path: 'cadastro',
         loadComponent: () => import('./pages/register/register.component')
+    },
+    {
+        path: 'home',
+        loadComponent: () => import('./pages/home/home.component')
+    },
+    {
+        path: 'perfil',
+        loadComponent: () => import('./pages/profile/profile.component')
     }
 ];
