@@ -1,21 +1,29 @@
-<div class="login-page">
-    <img src="assets/logo.png" alt="logo" width="200px">
-    <Span class="title">Faça seu login</Span>
-    <div class="login-container">
-        <app-main-input label="Email" placeholder="Digite aqui" type="text" iconSrc="assets/user_icon.png"/>
-        <app-main-input label="Senha" placeholder="Digite aqui" type="password" iconSrc="assets/password_icon.png"/>
-        <a class="change_password">Esqueceu a senha?</a>
+<div class="page-container">
+    <div class="logo-container">
+        <img src="assets/logo.png" alt="Logo">
+    </div>
 
-        <div class="login-button">
-            <app-main-button class="button-text" button_text="Entrar" onclick="handlelogin()"/>
+    <div class="input-wrapper">
+        <div class="title-wrapper">
+            <h2 class="title">Faça seu login</h2>    
         </div>
 
-        <div class="divider-container">
+        <app-main-input placeholder="Digite aqui" label="Email" type="text"/>
+        <app-main-input placeholder="Digite aqui" label="Senha" type="password"/>
+    </div>
+
+    <div class="button-wrapper">
+        <app-main-button button_text="Entrar"/>
+
+        <div class="diviter-container">
             <div class="divider"></div>
             <span class="divider-text">Ou</span>
             <div class="divider"></div>
         </div>
-
-        <span class="register-text">Fazer cadastro</span>
+        <div class="button-container">
+            <div class="button">
+                <span class="button-text">Criar uma conta</span>
+            </div>
+        </div>
     </div>
 </div>

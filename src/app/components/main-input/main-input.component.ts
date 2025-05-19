@@ -11,5 +11,4 @@ export class MainInputComponent {
   @Input() label:string = "";
   @Input() placeholder:string = "";
   @Input() type:string = "";
-  @Input() iconSrc: string = '';
 }
