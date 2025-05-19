@@ -1,63 +1,88 @@
-.login-page{
+.page-container{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     height: 100vh;
+    justify-content: space-evenly;
+    padding: 1rem;
 }
 
-.login-container{
+.logo-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.title-wrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.title{
+    color: var(--Black, #1B1B1D);
+    font-family: Urbanist;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 40.745px; /* 145.518% */
+    letter-spacing: 0.28px;
+    justify-self: center;
+}
+
+.input-wrapper{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     gap: 1rem;
-
-}
-.title{
-    color: #000;
-    font-family: Inter;
-    font-size: 22px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    margin-bottom: 2rem;
 }
 
-.change_password{
-    color: #022CFF;
-    font-family: Inter;
-    font-size: 10px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    align-self: flex-start;
-}
-
-.login-button{
+.button-wrapper{
     display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+    padding: 10px 25px;
+    border-radius: 10px;
+    background: var(--Primary-Black-0, #FFF);
+    border: 1px solid var(--Primary-Black-200, #E8E8E8);
+    color: #fff;
+    width:200px;
+    cursor: pointer;
+}
+
+.button:hover {
+    filter: brightness(0.9); 
+}
+
+.button-container{
+    display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    justify-self: center;
-    width: 199.411px;
-    height: 40.4px;
-    border-radius: 10px;
-    background-color: #A93545;
-    
+    width: 100%;
 }
 
 .button-text{
-    color: white;
-    font-family: inter; 
-    font-size: 16px;
+    color: var(--Primary-Black-400, #767676);
+    text-align: center;
+    font-family: Urbanist;
+    font-size: 14px;
     font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+    font-weight: 600;
+    line-height: 24px; /* 171.429% */
+    letter-spacing: 0.14px;
 }
 
-.divider-container{
+.diviter-container{
     display: flex;
     flex-direction: row;
+    justify-content: center;
     align-items: center;
     gap: 1rem;
 }
@@ -65,20 +90,11 @@
 .divider{
     width: 50px;
     height: 1px;
-    background-color: #AEAEAE;
+    background: #AEAEAE;
 }
 
-.divider-text{
+.diviter-text{
     color: #AEAEAE;
-    font-family: Inter;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-
-.register-text{
-    color: #000;
     font-family: Inter;
     font-size: 12px;
     font-style: normal;
