@@ -16,12 +16,14 @@ export default class HomeComponent {
   cards = [
   {
     nome: 'Ver-o-Peso',
+    tipo: 'Feira',
     local: 'Belém, Pará',
     imagem: 'assets/veroPeso.png',
     nota: 4.8
   },
   {
     nome: 'Bar do Lino',
+    tipo: 'Loja',
     local: 'Belém, Pará',
     imagem: 'assets/barLino.png',
     nota: 4.6

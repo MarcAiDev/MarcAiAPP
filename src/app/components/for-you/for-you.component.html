@@ -5,6 +5,7 @@
     <div class="card-info">
       <div class="card-header">
         <h3 class="card-title">{{ item.nome }}</h3>
+        <span class="card-description">{{item.tipo}}</span>
       </div>
 
       <span class="card-status" [ngClass]="item.status === 'Aberto' ? 'open' : 'closed'">
