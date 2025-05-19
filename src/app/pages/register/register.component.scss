@@ -1,58 +1,29 @@
-.register-container{
+.page-container{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.header{
+    display: flex;
+    flex-direction: row;
     align-items: center;
-    height: 100vh;
 }
 
 .title{
-    color: #000;
-    font-family: Inter;
-    font-size: 22px;
+    color: var(--Black, #1B1B1D);
+    font-family: Urbanist;
+    font-size: 28px;
     font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    align-self: center;
+    font-weight: 600;
+    line-height: 40.745px; /* 145.518% */
+    letter-spacing: 0.28px;  
+    margin-bottom: 0;
 }
 
-.form{
+.inputs-container{
     display: flex;
     flex-direction: column;
-    justify-self: center;
-    align-self: center;
     gap: 1rem;
-}
-
-.login-button{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    justify-self: center;
-    align-self: center;
-    width: 199.411px;
-    height: 40.4px;
-    border-radius: 10px;
-    background-color: #A93545;
-    margin-top: 1rem;
-    
-}
-
-.login-text{
-    color: #000;
-    font-family: Inter;
-    font-size: 8px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    align-self: center;
-}
-
-a{
-    color: #3318FC;
-    font-family: Inter;
-    font-size: 8px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
 }

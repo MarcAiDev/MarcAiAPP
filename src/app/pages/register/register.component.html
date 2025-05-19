@@ -1,20 +1,14 @@
-<div class="register-container">
-    <img src="assets/logo.png" alt="logo" width="200px">
-
-    <div class="form">
-        <span class="title">Cadastro</span>
-
-        <app-main-input placeholder="Digite aqui" type="text" label="nome completo" iconSrc="assets/user_icon.png"/>
-        <app-main-input placeholder="Digite aqui" type="number" label="telefone" iconSrc="assets/phone_icon.png"/>
-        <app-main-input placeholder="Digite aqui" type="text" label="Email" iconSrc="assets/email_icon.png"/>
-        <app-main-input placeholder="Digite aqui" type="password" label="Senha" iconSrc="assets/password_icon.png"/>
-
-        <div class="login-button">
-            <app-main-button class="button-text" button_text="Cadastrar" onclick="handlelogin()"/>
-        </div>
-
-        <span class="login-text">Já tem login? <a href="">Fazer login</a></span>
-
+<div class="page-container">
+    <div class="header" routerLink="/login">
+        <img src="assets/arrow-left.png" alt="Arrow">
     </div>
-    
+
+    <h3 class="title">Crie a sua conta</h3>
+    <div class="inputs-container">
+        <app-main-input type="text" placeholder="Digite aqui" label="Nome Completo"/>
+        <app-main-input type="text" placeholder="Digite aqui" label="Email"/>
+        <app-main-input type="number" placeholder="Digite aqui" label="Telefone"/>
+        <app-dropdown-input/>
+    </div>
+    <app-main-button button_text="Criar conta"/>
 </div>

@@ -1,0 +1,23 @@
+<div class="input-container" (click)="toggleDropdown()" tabindex="0" (blur)="closeDropdown()">
+  <span>Tipo de usuário</span>
+
+  <div class="custom-select-box">
+    <div class="selected-option">
+      {{ selectedOption || 'Selecione uma opção' }}
+    </div>
+
+    <!-- Seta -->
+    <img src="assets/arrow-down.png" alt="Seta" class="icon">
+
+    <!-- Opções -->
+    <div class="options-dropdown" *ngIf="dropdownOpen">
+      <div
+        class="option"
+        *ngFor="let option of options"
+        (click)="selectOption(option); $event.stopPropagation()"
+      >
+        {{ option }}
+      </div>
+    </div>
+  </div>
+</div>
