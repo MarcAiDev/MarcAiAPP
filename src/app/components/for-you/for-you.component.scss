@@ -75,13 +75,14 @@
 .card-rating {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 2px;
   font-size: 14px;
   margin-top: 2px;
 }
 
-.stars {
-  color: #f9c700;
+.rating-icon{
+  height: 14px;
+  width: 14px;
 }
 
 .card-description {

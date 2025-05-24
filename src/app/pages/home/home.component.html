@@ -28,7 +28,7 @@
     </div>
 
     <div class="card-scroll-container">
-        <div class="favorite-card" *ngFor="let card of cards">
+        <div class="favorite-card" *ngFor="let card of cards" routerLink="{{card.rota}}">
             <img [src]="card.imagem" alt="image" class="card-image">
             <div class="card-content">
                 <h3 class="favorite-card-title">{{card.nome}}</h3>
@@ -37,7 +37,11 @@
                     <span class="location">{{card.local}}</span>
                     <span class="location"> - {{card.tipo}}</span>
                 </div>
-                <span class="rating">{{card.nota}} ⭐</span>
+                <div class="rating-container">
+                    <span class="rating">{{card.nota}} </span>
+                    <img src="assets/star.png" alt="star" class="star-rating-icon">
+                </div>
+                
             </div>
         </div>
     </div>

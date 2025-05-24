@@ -119,6 +119,8 @@
     right: 0;
     z-index: 10;
     padding: 0 16px;
+    font-family: inter;
+    font-weight: 300;
 
     // Initially hidden, shows when visible class is added
     transform: translateY(100%);

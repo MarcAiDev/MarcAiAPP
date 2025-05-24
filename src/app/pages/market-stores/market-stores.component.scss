@@ -1,0 +1,26 @@
+.page-container{
+    padding: 1rem;
+}
+
+.header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-text{
+   color: var(--Black, #1B1B1D);
+    text-align: center;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Urbanist;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px; /* 125% */
+    letter-spacing: 0.2px; 
+}
+
+.searchBar-wrapper{
+    margin-top: 2rem;
+}

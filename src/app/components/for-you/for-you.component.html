@@ -1,5 +1,5 @@
 <div class="for-you">
-  <div class="for-you-card" *ngFor="let item of cards">
+  <div class="for-you-card" *ngFor="let item of cards" routerLink="/info">
     <img [src]="item.imagem" alt="Imagem do local" class="card-img" />
 
     <div class="card-info">
@@ -14,7 +14,7 @@
 
       <div class="card-rating">
         <span class="rating">{{ item.nota }}</span>
-        <img src="assets/star.png" alt="star">
+        <img src="assets/star.png" alt="star" class="rating-icon">
       </div>
 
       <p class="card-description">

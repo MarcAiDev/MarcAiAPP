@@ -33,5 +33,13 @@ export const routes: Routes = [
     {
         path: 'map',
         loadComponent: () => import('./pages/map/map.component')
-    }
+    },
+    {
+        path: 'market',
+        loadComponent: () => import('./pages/market-info/market-info.component')
+    },
+    {
+        path: 'market-stores',
+        loadComponent: () => import('./pages/market-stores/market-stores.component')
+    },
 ];
