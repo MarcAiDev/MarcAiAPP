@@ -1,0 +1,43 @@
+<div class="page-container">
+    <div class="header">
+        <img src="assets/arrow-left.png" alt="Seta" class="arrow">
+        <span class="store-name">Bar do Lino</span>
+        <span></span>
+    </div>
+    <div class="shop-image">
+        
+    </div>
+
+    <div class="youFind">
+        <span class="youFind">O que você encontra?</span>
+    </div>
+
+    <div class="category-container">
+        <div class="category-card" *ngFor="let card of cards">
+            <img [src]="card.icon" alt="icon" class="category-icon">
+            <span class="category-text">{{card.type}}</span>
+        </div>
+    </div>
+
+    <div class="description-container">
+        <span class="description-title">Descrição</span>
+        <span class="description-text">
+            O Bar do Lino é um clássico da região, conhecido pelo ambiente descontraído,
+            cerveja sempre gelada e petiscos com o verdadeiro sabor paraense. Um ponto de encontro querido por moradores e visitantes,
+            perfeito para relaxar, ouvir música e aproveitar boas conversas.
+        </span>
+    </div>
+
+    <div class="status-container">
+        <img src="assets/clock.png" alt="clock" class="status-icon">
+        <div class="text-wrapper">
+            <span class="status-text">Aberto</span>
+            <span class="status-text-time">9:00 AM</span>
+        </div>
+    </div>
+
+    <div class="youFind">
+        <span class="youFind">local</span>
+    </div>
+
+</div>

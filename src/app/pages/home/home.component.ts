@@ -22,11 +22,19 @@ export default class HomeComponent {
     nota: 4.8
   },
   {
-    nome: 'Bar do Lino',
-    tipo: 'Loja',
+    nome: 'Mercado de São Brás',
+    tipo: 'Feira',
     local: 'Belém, Pará',
-    imagem: 'assets/barLino.png',
+    imagem: 'assets/saoBras.jpg',
     nota: 4.6
   },
+  {
+    nome: 'Comércio',
+    tipo: 'Feira',
+    local: 'Belém, Pará',
+    imagem: 'assets/comercio.jpg',
+    nota: 4.6
+  },
+  
 ];
 }
