@@ -1,21 +1,22 @@
 import { Component } from '@angular/core';
 import { NgFor, NgClass } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-for-you',
-  imports: [NgFor, NgClass],
+  imports: [NgFor, NgClass,RouterLink],
   templateUrl: './for-you.component.html',
   styleUrl: './for-you.component.scss'
 })
 export class ForYouComponent {
  cards = [
   {
-    nome: 'Ver-o-Peso',
-    tipo: 'Feira',
-    imagem: 'assets/veroPeso.png',
+    nome: 'Dona Charme',
+    tipo: 'Loja',
+    imagem: 'assets/donaCharme.jpg',
     status: 'Aberto',
     nota: 4.8,
-    descricao: 'O maior mercado a céu aberto da América Latina, cheio de cultura, sabores e história.'
+    descricao: 'Explore a moda com estilo na Dona Charme! Encontre peças únicas, das tendências mais atuais às clássicas atemporais, para todos os gostos e ocasiões. Qualidade, conforto e preços acessíveis em um só lugar. Renove seu guarda-roupa hoje!'
   },
   {
     nome: 'Cafeteria do Norte',
