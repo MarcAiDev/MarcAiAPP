@@ -1,0 +1,165 @@
+.page-container{
+    padding: 1rem;
+}
+
+.header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.store-name{
+    color: var(--Black, #1B1B1D);
+    text-align: center;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Urbanist;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px; /* 125% */
+    letter-spacing: 0.2px;
+}
+
+.shop-image{
+  background-image: url('../../../../public/assets/barLino2.png');
+  width: 100%;
+  height: 200px;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  margin-top: 1rem;
+  flex-shrink: 0;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.youFind{
+  color: #000;
+
+  /* Headline-500 */
+  font-family: Urbanist;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 26px; /* 162.5% */
+  letter-spacing: 0.16px;
+  margin-top: 20px;
+}
+.category-container {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 20px;
+  margin-top: 1rem;
+  padding-bottom: 1rem; /* espaço extra para não cortar sombra */
+  -webkit-overflow-scrolling: touch; /* melhor rolagem no iOS */
+}
+
+.category-container::-webkit-scrollbar {
+  display: none; /* esconde a barra de rolagem */
+}
+
+.category-card{
+  display: flex;
+  flex-direction: row;
+  justify-content: space;
+  align-items: center;
+  height: 50px;
+  width: 6rem;
+  background-color: #fff;
+  border-radius: 8px;
+  border: 1px solid var(--Primary-Black-200, #E8E8E8);
+
+}
+
+.category-icon{
+  width: 24px;
+  height: 24px;
+  margin-left: 5px;
+}
+
+.category-text{
+  color: var(--Black, #1B1B1D);
+  font-family: Urbanist;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px; /* 183.333% */
+  letter-spacing: 0.12px;
+  margin-right:5px;
+  margin-left: 5px;
+}
+
+.description-container{
+  display: flex;
+  flex-direction: column;
+}
+
+.description-title{
+  color: #000;
+
+  /* Headline-500 */
+  font-family: Urbanist;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 26px; /* 162.5% */
+  letter-spacing: 0.16px;
+}
+
+.description-text{
+  color: var(--Black, #1B1B1D);
+
+  /* Body text-300 */
+  font-family: Urbanist;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px; /* 162.5% */
+  letter-spacing: 0.16px;
+}
+
+.status-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.status-icon{
+  width: 30px;
+  height: 30px;
+}
+
+.text-wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  margin-left: 10px;
+}
+
+.status-text{
+  color: var(--sucess-600, #17AF83);
+  font-family: Urbanist;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 0px; /* 0% */
+  letter-spacing: 0.12px;
+}
+
+.status-text-time{
+  color: #000;
+  font-family: Urbanist;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 15px;
+  letter-spacing: 0.12px;
+}
