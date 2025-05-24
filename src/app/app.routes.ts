@@ -34,4 +34,4 @@ export const routes: Routes = [
         path: 'map',
         loadComponent: () => import('./pages/map/map.component')
     }
-];,
+];
