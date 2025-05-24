@@ -192,6 +192,13 @@
     margin-left: 5PX;
 }
 
+.rating-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
 .rating {
     color: var(--Primary-Black-0, #FFF);
     font-family: Urbanist;
@@ -199,6 +206,11 @@
     font-style: normal;
     font-weight: 600;
     line-height: normal;
+}
+
+.star-rating-icon{
+    height: 12px;
+    width: 12px;
 }
 
 .for-you{
