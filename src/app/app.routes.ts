@@ -29,5 +29,9 @@ export const routes: Routes = [
     {
         path: 'info',
         loadComponent: () => import('./pages/description/description.component')
+    },
+    {
+        path: 'map',
+        loadComponent: () => import('./pages/map/map.component')
     }
-];
+];,
