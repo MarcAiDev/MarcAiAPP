@@ -1,39 +1,135 @@
+<!-- map.component.html -->
 <div class="screen-wrapper">
   
   <div class="overlay">
-    <input type="text"/>
+    <!-- Search input with clear button -->
+    <div class="search-container">
+      <input 
+        type="text" 
+        [(ngModel)]="searchTerm"
+        (input)="onSearchChange()"
+        placeholder="Buscar locais em Belém..."
+        aria-label="Campo de busca para locais"
+        autocomplete="off"
+        spellcheck="false"
+        class="search-input"
+      />
+      <button 
+        *ngIf="searchTerm" 
+        (click)="clearSearch()" 
+        class="clear-button"
+        aria-label="Limpar busca"
+        type="button"
+      >
+        ✕
+      </button>
+    </div>
     
-    <div class="cards-container">
-      <div class="card-slider">
-        
-        <div class="card-content">
-          <div>
-            <img class="store-img" src="assets/veroPeso.png" alt="ver-o-peso foto">
-            <div class="store-title">
-              <p>Ver-o-Peso</p>
-              <p>Belém</p>
-            </div>
-          </div>
-          
-          <div class="rating-row">
-            <div class="rating">
+    <!-- Cards slider container - only shows when searching -->
+    <section 
+      class="cards-container" 
+      [class.visible]="showCard"
+      aria-label="Locais disponíveis"
+    >
+      <div class="slider-wrapper" *ngIf="filteredItems.length > 0">
+        <!-- Slider container -->
+        <div 
+          class="card-slider" 
+          #cardSlider
+          (touchstart)="onTouchStart($event)"
+          (touchmove)="onTouchMove($event)"
+          (touchend)="onTouchEnd($event)"
+          (mousedown)="onMouseDown($event)"
+          (mousemove)="onMouseMove($event)"
+          (mouseup)="onMouseEnd($event)"
+          (mouseleave)="onMouseEnd($event)"
+        >
+          <!-- Dynamic cards based on filtered results -->
+          <article 
+            *ngFor="let item of filteredItems; let i = index" 
+            class="card-item" 
+            role="region" 
+            [attr.aria-labelledby]="'store-name-' + item.id"
+            (click)="onCardClick(item, i)"
+            style="cursor: pointer;"
+          >
+            <div class="location-card">
+              <img 
+                class="floating-image" 
+                [src]="item.image" 
+                [alt]="'Foto do ' + item.name"
+                loading="lazy"
+              >
               
-              <div class="rating-value">
-                <img src="assets/star.png" alt="star">
-                <span>4.5/5</span>
+              <div class="card-content">
+                <div class="location-info">
+                  <h3 [id]="'store-name-' + item.id">{{ item.name }}</h3>
+                  <p class="location-city">{{ item.location }}</p>
+                </div>
+                
+                <div class="rating-section">
+                  <div class="rating-badge" [attr.aria-label]="'Avaliação ' + item.rating + ' de 5 estrelas'">
+                    <img 
+                      src="assets/star.png" 
+                      alt=""
+                      role="presentation"
+                      loading="lazy"
+                    >
+                    <span class="rating-value">{{ item.rating }}</span>
+                    <span class="rating-scale">/5</span>
+                  </div>
+                  
+                  <div 
+                    class="status-indicator"
+                    [class.open]="item.isOpen"
+                    [class.closed]="!item.isOpen"
+                    role="status" 
+                    [attr.aria-label]="'Status: ' + (item.isOpen ? 'aberto' : 'fechado')"
+                    [title]="'Estabelecimento ' + (item.isOpen ? 'aberto' : 'fechado')"
+                  ></div>
+                </div>
               </div>
-              
-              <div class="store-status"></div>
-          
             </div>
-          </div>
+          </article>
+        </div>
 
+        <!-- Slider indicators - only show if more than one item -->
+        <div 
+          *ngIf="filteredItems.length > 1"
+          class="slider-indicators" 
+          role="tablist" 
+          aria-label="Indicadores do carrossel"
+        >
+          <button 
+            *ngFor="let item of filteredItems; let i = index"
+            class="indicator"
+            [class.active]="i === currentSlide"
+            (click)="goToSlide(i)"
+            [attr.aria-label]="'Ir para slide ' + (i + 1)"
+            role="tab"
+            [attr.aria-selected]="i === currentSlide"
+          ></button>
         </div>
       </div>
-    </div>
 
+      <!-- No results message -->
+      <div *ngIf="searchTerm && filteredItems.length === 0" class="no-results">
+        <p>Nenhum local encontrado para "{{ searchTerm }}"</p>
+        <button (click)="clearSearch()" class="clear-search-btn">
+          Limpar busca
+        </button>
+      </div>
+    </section>
+
+    <!-- Navigation component - always visible -->
     <app-navbar></app-navbar>
   </div>
 
-  <div id="map"></div>
+  <!-- Map container -->
+  <div 
+    id="map" 
+    role="application" 
+    aria-label="Mapa interativo de Belém"
+    tabindex="0"
+  ></div>
 </div>
