@@ -11,5 +11,12 @@
         <app-main-input type="number" placeholder="Digite aqui" label="Data de nascimento"/>
         <app-main-input type="number" placeholder="Digite aqui" label="Senha"/>
     </div>
-    <app-main-button button_text="Criar conta"/>
+    <app-main-button button_text="Criar conta" (click)="onRegister()"/>
+</div>
+<!-- Modal de sucesso -->
+<div class="success-modal-backdrop" *ngIf="showSuccessModal">
+  <div class="success-modal">
+    <p>Conta criada com sucesso!</p>
+    <button (click)="closeModal()" routerLink="/perfil" routerLink="/login">OK</button>
+  </div>
 </div>
