@@ -1,0 +1,18 @@
+<div class="input-container">
+  <span>Foto da loja</span>
+
+  <!-- Campo de envio -->
+  <label class="file-upload-box">
+    <input type="file" accept="image/*" (change)="onFileSelected($event)" hidden />
+    <ng-container *ngIf="selectedFileName; else placeholder">
+      {{ selectedFileName }}
+    </ng-container>
+    <ng-template #placeholder>
+      Clique para enviar uma imagem
+    </ng-template>
+  </label>
+
+  <!-- Prévia da imagem -->
+   <span>Prévia da imagem</span>
+  <img *ngIf="imagePreviewUrl" [src]="imagePreviewUrl" alt="Prévia da imagem" class="image-preview" />
+</div>

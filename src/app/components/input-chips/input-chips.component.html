@@ -1,0 +1,13 @@
+<div class="input-container">
+  <span>Categorias</span>
+  <div class="chip-container">
+    <div 
+      class="chip" 
+      *ngFor="let option of chipOptions" 
+      [class.selected]="selectedChips.includes(option)"
+      (click)="toggleChip(option)"
+    >
+      {{ option }}
+    </div>
+  </div>
+</div>

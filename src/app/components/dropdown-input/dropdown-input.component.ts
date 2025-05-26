@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
   styleUrl: './dropdown-input.component.scss'
 })
 export class DropdownInputComponent {
-  options = ['Feirante', 'Turista'];
+  options = ['Ver-o-Peso', 'Mercado de São Brás','Comércio'];
   selectedOption: string | null = null;
   dropdownOpen = false;
 

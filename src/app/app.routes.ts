@@ -42,4 +42,8 @@ export const routes: Routes = [
         path: 'market-stores',
         loadComponent: () => import('./pages/market-stores/market-stores.component')
     },
+    {
+        path: 'addStore',
+        loadComponent: () => import('./pages/add-store/add-store.component')
+    },
 ];

@@ -1,0 +1,46 @@
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+span {
+  align-self: flex-start;
+  margin-left: 1.2rem;
+  color: var(--Primary-Black-300, #1B1B1D);
+  font-family: Urbanist;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 25px;
+  letter-spacing: 0.12px;
+}
+
+.file-upload-box {
+  width: 80%;
+  padding: 15px 20px;
+  border-radius: 15px;
+  border: 1px solid var(--Primary-Black-200, #E8E8E8);
+  background: var(--Primary-Black-0, #FFF);
+  font-family: Urbanist;
+  font-size: 14px;
+  color: var(--Primary-Black-300, #1B1B1D);
+  cursor: pointer;
+  text-align: center;
+  user-select: none;
+  margin-bottom: 1rem;
+}
+
+.file-upload-box:hover {
+  background: #f0f0f0;
+}
+
+.image-preview {
+  width: 90%;
+  max-height: 200px;
+  object-fit: contain;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
