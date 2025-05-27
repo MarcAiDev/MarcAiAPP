@@ -39,8 +39,8 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/market-info/market-info.component')
     },
     {
-        path: 'market-stores',
-        loadComponent: () => import('./pages/market-stores/market-stores.component')
+        path: 'market-stores/:id',
+        loadComponent: () => import('./pages/market-stores/market-stores.component').then((m) => m.default),
     },
     {
         path: 'addStore',

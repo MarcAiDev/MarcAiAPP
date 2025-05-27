@@ -33,7 +33,8 @@ export class ForYouComponent {
     status: 'Fechado',
     nota: 4.6,
     descricao: 'O Bar do Lino é um clássico da região, conhecido pelo ambiente descontraído, cerveja sempre gelada e petiscos com o verdadeiro sabor paraense. Um ponto de encontro querido por moradores e visitantes, perfeito para relaxar, ouvir música e aproveitar boas conversas.'
-  }
+  },
+  
 ];
 
 }

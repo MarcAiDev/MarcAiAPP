@@ -24,7 +24,7 @@
       </div>
       <div class="footer">
         <span class="status">{{ feira.status }}</span>
-        <button class="map-btn" routerLink="/market-stores">Ver Lojas</button>
+        <button class="map-btn" [routerLink]="['/market-stores', feira.id]">Ver Lojas</button>
       </div>
     </div>
   </div>
