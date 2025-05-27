@@ -46,12 +46,12 @@ export default class MapComponent implements OnInit, OnDestroy, AfterViewInit {
     },
     {
       id: 2,
-      name: 'Bar do Parque',
+      name: 'Comercio',
       location: 'Belém',
-      image: 'assets/bar_do_parque.jpg',
+      image: 'assets/foto_do_comercio.jpg',
       rating: 4.2,
       isOpen: true,
-      coordinates: [-1.453124, -48.494170]
+      coordinates: [-1.453231, -48.502122]
     },
     {
       id: 3,
