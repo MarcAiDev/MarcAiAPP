@@ -1,6 +1,6 @@
 <div class="page-container">
   <div class="header">
-    <img src="assets/arrow-left.png" alt="arrow" routerLink="/home" />
+    <img src="assets/arrow-left.png" alt="arrow" routerLink="" />
     <span class="header-text">Lojas do {{ feiraNome }}</span>
     <span></span>
   </div>
@@ -10,7 +10,7 @@
   </div>
 
  <div class="for-you">
-  <div class="for-you-card" *ngFor="let item of cards" routerLink="/info">
+  <div class="for-you-card" *ngFor="let item of cards" [routerLink]="['/info', item.idLoja]">
     <img [src]="item.imagem" alt="Imagem do local" class="card-img" />
 
     <div class="card-info">

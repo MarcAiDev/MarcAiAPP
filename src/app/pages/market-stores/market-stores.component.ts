@@ -19,6 +19,7 @@ export default class MarketStoresComponent {
   lojas = [
     {
       id: 'vero-peso',
+      idLoja: 'loja-da-amazonia',
       nome: 'Loja da Amazônia',
       tipo: 'Artesanato',
       status: 'Aberto',
@@ -29,6 +30,7 @@ export default class MarketStoresComponent {
     {
       id: 'vero-peso',
       nome: 'Peixaria do Norte',
+      idLoja: 'peixaria-do-norte',
       tipo: 'Alimentação',
       status: 'Fechado',
       nota: 4.5,
@@ -37,6 +39,7 @@ export default class MarketStoresComponent {
     },
     {
       id: 'sao-bras',
+      idLoja: 'sabores-de-bras',
       nome: 'Sabores de Brás',
       tipo: 'Comida típica',
       status: 'Aberto',
@@ -46,6 +49,7 @@ export default class MarketStoresComponent {
     },
     {
       id: 'sao-bras',
+      idLoja: 'bar-do-lino',
       nome: 'Bar do Lino',
       tipo: 'Social',
       status: 'Aberto',
@@ -55,6 +59,7 @@ export default class MarketStoresComponent {
     },
     {
       id: 'comercio',
+      idLoja: 'andreia-semijoias-e-folheados',
       nome: 'Andreia Semijoias e folheados',
       tipo: 'Loja',
       status: 'Aberto',
@@ -64,6 +69,7 @@ export default class MarketStoresComponent {
     },
     {
       id: 'comercio',
+      idLoja: 'mariana-tecidos',
       nome: 'Mariana tecidos',
       tipo: 'Loja',
       status: 'Aberto',
@@ -73,6 +79,7 @@ export default class MarketStoresComponent {
     },
     {
       id: 'comercio',
+      idLoja: 'casa-da-maquiagem',
       nome: 'Casa da maquiagem',
       tipo: 'Loja',
       status: 'Aberto',

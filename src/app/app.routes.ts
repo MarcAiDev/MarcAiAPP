@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
     {
-        path: '',
+        path: 'intro',
         redirectTo: 'intro',
         pathMatch: 'full'
     },
@@ -19,7 +19,7 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/register/register.component')
     },
     {
-        path: 'home',
+        path: '',
         loadComponent: () => import('./pages/home/home.component')
     },
     {
@@ -27,8 +27,8 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/profile/profile.component')
     },
     {
-        path: 'info',
-        loadComponent: () => import('./pages/description/description.component')
+        path: 'info/:id',
+        loadComponent: () => import('./pages/description/description.component').then(m => m.default)
     },
     {
         path: 'map',
