@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
     {
-        path: '',
+        path: 'intro',
         redirectTo: 'intro',
         pathMatch: 'full'
     },
@@ -27,20 +27,20 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/profile/profile.component')
     },
     {
-        path: 'info',
-        loadComponent: () => import('./pages/description/description.component')
+        path: 'info/:id',
+        loadComponent: () => import('./pages/description/description.component').then(m => m.default)
     },
     {
         path: 'map',
         loadComponent: () => import('./pages/map/map.component')
     },
     {
-        path: 'market',
+        path: 'descricao-feira/:id',
         loadComponent: () => import('./pages/market-info/market-info.component')
     },
     {
-        path: 'market-stores',
-        loadComponent: () => import('./pages/market-stores/market-stores.component')
+        path: 'market-stores/:id',
+        loadComponent: () => import('./pages/market-stores/market-stores.component').then((m) => m.default),
     },
     {
         path: 'addStore',

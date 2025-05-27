@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MarketInfoComponent } from './market-info.component';
+import MarketInfoComponent from './market-info.component';
 
 describe('MarketInfoComponent', () => {
   let component: MarketInfoComponent;

@@ -1,13 +1,38 @@
 <div class="page-container">
-    <div class="header">
-        <img src="assets/arrow-left.png" alt="arrow" routerLink="/market">
-        <span class="header-text">Lojas do Ver-o-Peso</span>
-        <span></span>
+  <div class="header">
+    <img src="assets/arrow-left.png" alt="arrow" routerLink="/home" />
+    <span class="header-text">Lojas do {{ feiraNome }}</span>
+    <span></span>
+  </div>
+
+  <div class="searchBar-wrapper">
+    <app-search-bar />
+  </div>
+
+ <div class="for-you">
+  <div class="for-you-card" *ngFor="let item of cards" [routerLink]="['/info', item.idLoja]">
+    <img [src]="item.imagem" alt="Imagem do local" class="card-img" />
+
+    <div class="card-info">
+      <div class="card-header">
+        <h3 class="card-title">{{ item.nome }}</h3>
+        <span class="card-description">{{item.tipo}}</span>
+      </div>
+
+      <span class="card-status" [ngClass]="item.status === 'Aberto' ? 'open' : 'closed'">
+        {{ item.status }}
+      </span>
+
+      <div class="card-rating">
+        <span class="rating">{{ item.nota }}</span>
+        <img src="assets/star.png" alt="star" class="rating-icon">
+      </div>
+
+      <p class="card-description">
+        {{ item.descricao }}
+      </p>
     </div>
-    <div class="searchBar-wrapper">
-        <app-search-bar/>
-    </div>
-    <div class="content">
-        <app-for-you/>
-    </div>
+  </div>
+</div>
+
 </div>

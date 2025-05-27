@@ -24,3 +24,125 @@
 .searchBar-wrapper{
     margin-top: 2rem;
 }
+.store-card {
+  background: white;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  margin-bottom: 12px;
+  font-family: Urbanist;
+  font-size: 16px;
+  color: #1B1B1D;
+}
+
+
+.for-you {
+  padding: 1rem;
+}
+
+.for-you-card {
+  display: flex;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 0 0 1px #eee;
+  padding: 12px;
+  gap: 12px;
+  align-items: flex-start;
+  position: relative;
+  max-width: 100%;
+  margin-bottom: 2rem;
+}
+
+.card-img {
+  width: 100px;
+  height: 180px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.card-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.card-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.card-title {
+  color: var(--Black, #1B1B1D);
+
+  /* Headline/300 */
+  font-family: Urbanist;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 26px; /* 162.5% */
+  letter-spacing: 0.16px;
+  margin-bottom: 0;
+}
+
+.heart-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.card-status {
+  /* Headline/200 */
+  font-family: Urbanist;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 171.429% */
+  letter-spacing: 0.14px;
+}
+
+.card-status.open {
+  color: var(--Sucess-500, #20CC89);
+}
+
+.card-status.closed {
+  color: var(--Primary-Error-500, #FD5B1F);
+}
+
+.card-rating {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 14px;
+  margin-top: 2px;
+}
+
+.rating-icon{
+  height: 14px;
+  width: 14px;
+}
+
+.card-description {
+  font-size: 13px;
+  color: var(--Primary-Black-400, #767676);
+  font-weight: 400;
+  line-height: 22px; /* 183.333% */
+  letter-spacing: 0.12px;
+  font-style: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: urbanist;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Limita a 2 linhas */
+  -webkit-box-orient: vertical;
+}
+
+.rating{
+  color: var(--Black, #1B1B1D);
+  font-family: Urbanist;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}

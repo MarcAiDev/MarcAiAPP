@@ -1,8 +1,8 @@
 <div class="home-container">
     <div class="user-info">
         <div class="user-wrapper">
-            <img src="assets/user-photo.png" alt="user-icon">
-            <span class="user-info-text">Olá, Matheus!</span>
+            <img src="assets/user.png" alt="user-icon" class="user-icon">
+            <span class="user-info-text">Olá, André!</span>
         </div>
         <img src="assets/logo.png" alt="Logo" class="logo">
     </div>
@@ -15,7 +15,6 @@
 
     <div class="category">
         <span class="sub-title">Escolha a categoria</span>
-        <span class="sub-title-2">Ver tudo</span>
     </div>
 
     <div class="card-scroll-container">
@@ -27,8 +26,12 @@
         </div>
     </div>
 
+    <div class="category">
+        <span class="sub-title">Feiras</span>
+    </div>
+
     <div class="card-scroll-container">
-        <div class="favorite-card" *ngFor="let card of cards" routerLink="{{card.rota}}">
+        <div class="favorite-card" *ngFor="let card of cards" (click)="verDescricao(card)">
             <img [src]="card.imagem" alt="image" class="card-image">
             <div class="card-content">
                 <h3 class="favorite-card-title">{{card.nome}}</h3>
@@ -48,7 +51,6 @@
 
     <div class="category">
         <span class="sub-title">Para você</span>
-        <span class="sub-title-2">Ver tudo</span>
     </div>
 
     <app-for-you/>

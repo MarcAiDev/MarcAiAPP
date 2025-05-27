@@ -1,28 +1,30 @@
-<div class="page-container">
+<div
+  class="page-container"
+  *ngIf="feira"
+  [style.background-image]="'url(' + feira.image + ')'"
+>
   <div class="fadeOut"></div>
 
   <div class="content">
     <div class="header">
-      <img src="assets/arrow-left.png" alt="arrow" class="arrow" routerLink="/home">
+      <img src="assets/arrow-left.png" alt="arrow" class="arrow" routerLink="/home" />
     </div>
 
     <div class="place-info">
-      <h1 class="title">Ver-o-Peso</h1>
+      <h1 class="title">{{ feira.nome }}</h1>
       <div class="location">
-        <img src="assets/location.png" alt="Pin" class="location-icon">
-        <span class="location-text">Belém, Pará</span>
+        <img src="assets/location.png" alt="Pin" class="location-icon" />
+        <span class="location-text">{{ feira.local }}</span>
       </div>
       <div class="divider"></div>
-      <p class="description">
-        O Ver-o-Peso é um dos pontos turísticos mais icônicos de Belém do Pará e o maior mercado a céu aberto da América Latina. Localizado às margens da Baía do Guajará, o local reúne uma grande diversidade de produtos típicos da região amazônica, como frutas exóticas, ervas medicinais, peixes frescos, especiarias e artesanato local.
-      </p>
+      <p class="description">{{ feira.descricao }}</p>
       <div class="rating">
-        <img src="assets/star.png" alt="star">
-        <span class="rating-text">4.8</span>
+        <img src="assets/star.png" alt="star" />
+        <span class="rating-text">{{ feira.nota }}</span>
       </div>
       <div class="footer">
-        <span class="status">Aberto</span>
-        <button class="map-btn" routerLink="/market-stores">Ver Lojas</button>
+        <span class="status">{{ feira.status }}</span>
+        <button class="map-btn" [routerLink]="['/market-stores', feira.id]">Ver Lojas</button>
       </div>
     </div>
   </div>
