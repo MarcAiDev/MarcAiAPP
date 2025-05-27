@@ -42,7 +42,7 @@ export default class MapComponent implements OnInit, OnDestroy, AfterViewInit {
       image: 'assets/veroPeso.png',
       rating: 4.5,
       isOpen: false,
-      coordinates: [-1.4558, -48.4902]
+      coordinates: [-1.452325, -48.503683]
     },
     {
       id: 2,
@@ -51,7 +51,7 @@ export default class MapComponent implements OnInit, OnDestroy, AfterViewInit {
       image: 'assets/bar_do_parque.jpg',
       rating: 4.2,
       isOpen: true,
-      coordinates: [-1.4520, -48.4850]
+      coordinates: [-1.453124, -48.494170]
     },
     {
       id: 3,
@@ -60,7 +60,7 @@ export default class MapComponent implements OnInit, OnDestroy, AfterViewInit {
       image: 'assets/mercado_sao_bras.jpg',
       rating: 4.0,
       isOpen: true,
-      coordinates: [-1.4400, -48.4700]
+      coordinates: [-1.451412, -48.468503]
     }
   ];
 
@@ -151,7 +151,7 @@ export default class MapComponent implements OnInit, OnDestroy, AfterViewInit {
       if (this.map && selectedItem.coordinates) {
         this.map.setView(selectedItem.coordinates, this.map.getZoom(), {
           animate: true,
-          duration: 0.5
+          duration: 0.3
         });
       }
     }
