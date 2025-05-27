@@ -19,7 +19,7 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/register/register.component')
     },
     {
-        path: '',
+        path: 'home',
         loadComponent: () => import('./pages/home/home.component')
     },
     {

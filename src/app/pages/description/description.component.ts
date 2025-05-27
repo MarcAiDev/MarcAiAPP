@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { MainButtonComponent } from "../../components/main-button/main-button.component";
 
 @Component({
   selector: 'app-description',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, MainButtonComponent],
   templateUrl: './description.component.html',
   styleUrl: './description.component.scss'
 })

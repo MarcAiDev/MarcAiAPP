@@ -41,7 +41,7 @@ export default class MarketInfoComponent {
       descricao:
         'O Comércio de Belém é uma área repleta de lojas, feiras e mercados populares, movimentado por turistas e moradores locais em busca de variedade e bons preços.',
       nota: 4.6,
-      status: 'Fechado',
+      status: 'Aberto',
       image: 'assets/comercio.jpg'
     },
   ];

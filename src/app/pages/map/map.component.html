@@ -52,6 +52,7 @@
             [attr.aria-labelledby]="'store-name-' + item.id"
             (click)="onCardClick(item, i)"
             style="cursor: pointer;"
+            routerLink="/market-stores/{{item.idFeira}}"
           >
             <div class="location-card">
               <img 

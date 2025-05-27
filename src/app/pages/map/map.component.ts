@@ -3,9 +3,11 @@ import * as L from 'leaflet';
 import { NavbarComponent } from "../../components/navbar/navbar.component";
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 interface SliderItem {
   id: number;
+  idFeira:string;
   name: string;
   location: string;
   image: string;
@@ -18,7 +20,7 @@ interface SliderItem {
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss'],
-  imports: [NavbarComponent, CommonModule, FormsModule],
+  imports: [NavbarComponent, CommonModule, FormsModule,RouterLink],
 })
 export default class MapComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('cardSlider', { static: false }) cardSlider!: ElementRef;
@@ -37,6 +39,7 @@ export default class MapComponent implements OnInit, OnDestroy, AfterViewInit {
   sliderItems: SliderItem[] = [
     {
       id: 1,
+      idFeira:'vero-peso',
       name: 'Ver-o-Peso',
       location: 'Belém',
       image: 'assets/veroPeso.png',
@@ -46,6 +49,7 @@ export default class MapComponent implements OnInit, OnDestroy, AfterViewInit {
     },
     {
       id: 2,
+      idFeira:'comercio',
       name: 'Comercio',
       location: 'Belém',
       image: 'assets/foto_do_comercio.jpg',
@@ -55,6 +59,7 @@ export default class MapComponent implements OnInit, OnDestroy, AfterViewInit {
     },
     {
       id: 3,
+      idFeira:'sao-bras',
       name: 'Mercado São Brás',
       location: 'Belém',
       image: 'assets/mercado_sao_bras.jpg',
