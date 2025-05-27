@@ -7,7 +7,7 @@ export const routes: Routes = [
         pathMatch: 'full'
     },
     {
-        path: 'intro',
+        path: '',
         loadComponent: () => import('./pages/intro/intro.component')
     },
     {
