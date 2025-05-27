@@ -35,7 +35,7 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/map/map.component')
     },
     {
-        path: 'market',
+        path: 'descricao-feira/:id',
         loadComponent: () => import('./pages/market-info/market-info.component')
     },
     {

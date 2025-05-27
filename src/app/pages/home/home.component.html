@@ -28,7 +28,7 @@
     </div>
 
     <div class="card-scroll-container">
-        <div class="favorite-card" *ngFor="let card of cards" routerLink="{{card.rota}}">
+        <div class="favorite-card" *ngFor="let card of cards" (click)="verDescricao(card)">
             <img [src]="card.imagem" alt="image" class="card-image">
             <div class="card-content">
                 <h3 class="favorite-card-title">{{card.nome}}</h3>
