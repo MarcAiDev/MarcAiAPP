@@ -10,5 +10,5 @@ import { RouterLink } from '@angular/router';
   styleUrl: './profile.component.scss'
 })
 export default class ProfileComponent {
-
+  email:string = 'Andre@gmail.com'
 }
