@@ -1,5 +1,5 @@
 import { NgFor } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-input-chips',
@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
   styleUrl: './input-chips.component.scss'
 })
 export class InputChipsComponent {
+  @Input() label:string = ''
   chipOptions: string[] = ['Alimentação', 'Loja', 'Roupas', 'Social'];
   selectedChips: string[] = [];
 
