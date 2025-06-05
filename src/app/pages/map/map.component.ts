@@ -1,401 +1,317 @@
-import { Component, OnInit, OnDestroy, HostListener, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  AfterViewInit,
+  HostListener,
+} from '@angular/core';
 import * as L from 'leaflet';
-import { NavbarComponent } from "../../components/navbar/navbar.component";
+import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
-
-interface SliderItem {
-  id: number;
-  idFeira:string;
-  name: string;
-  location: string;
-  image: string;
-  rating: number;
-  isOpen: boolean;
-  coordinates: [number, number];
-}
+import { RouterLink, Router } from '@angular/router';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss'],
-  imports: [NavbarComponent, CommonModule, FormsModule,RouterLink],
+  standalone: true,
+  imports: [NavbarComponent, CommonModule, FormsModule, RouterLink],
 })
 export default class MapComponent implements OnInit, OnDestroy, AfterViewInit {
-  @ViewChild('cardSlider', { static: false }) cardSlider!: ElementRef;
-
   map: any;
   private resizeTimeout: any;
-  private markers: Map<number, L.Marker> = new Map();
+  private markers: Map<number, L.Polygon> = new Map();
+  private pinpointMarkers: L.Marker[] = [];
+  searchTerm: string = '';
+  private focusedPolygon: L.Polygon | null = null;
+  private focusedFeiraId: string | null = null;
+  private mapInitialized: boolean = false;
+  private tileLayer: L.TileLayer | null = null;
 
-  // Search functionality
-  searchTerm = '';
-  filteredItems: SliderItem[] = [];
-  showCard = true; // Agora começa como true para mostrar todos os cards
+  private feiraPinpoints: { [key: string]: { name: string; coords: [number, number]; idProduto: string }[] } = {
+    'vero-peso': [
+      { name: 'Banca da Maria', coords: [-1.4515, -48.5029], idProduto: 'peixaria-do-norte' },
+    ],
+    'comercio': [
+      { name: 'Mariana Tecidos', coords: [-1.4527, -48.4998], idProduto: 'mariana-tecidos' },
+      { name: 'Casa da Maquiagem', coords: [-1.4539659353515784, -48.50129442650628], idProduto: 'casa-da-maquiagem' },
+      { name: 'Bijuteria Bom Sucesso', coords: [-1.4537168809200471, -48.50123264798111], idProduto: 'andreia-semijoias-e-folheados' }
+    ],
+    'sao-bras': [
+      { name: 'Padaria São Brás', coords: [-1.4520, -48.4687], idProduto: 'sabores-de-bras' },
+    ],
+  };
 
-  // Slider properties
-  currentSlide = 0;
-  sliderItems: SliderItem[] = [
-    {
-      id: 1,
-      idFeira:'vero-peso',
-      name: 'Ver-o-Peso',
-      location: 'Belém',
-      image: 'assets/veroPeso.png',
-      rating: 4.5,
-      isOpen: false,
-      coordinates: [-1.452325, -48.503683]
-    },
-    {
-      id: 2,
-      idFeira:'comercio',
-      name: 'Comercio',
-      location: 'Belém',
-      image: 'assets/foto_do_comercio.jpg',
-      rating: 4.2,
-      isOpen: true,
-      coordinates: [-1.453231, -48.502122]
-    },
-    {
-      id: 3,
-      idFeira:'sao-bras',
-      name: 'Mercado São Brás',
-      location: 'Belém',
-      image: 'assets/mercado_sao_bras.jpg',
-      rating: 4.0,
-      isOpen: true,
-      coordinates: [-1.451412, -48.468503]
-    }
-  ];
-
-  // Touch/Mouse events properties
-  private isDragging = false;
-  private startX = 0;
-  private currentX = 0;
-  private startTransform = 0;
-  private threshold = 50;
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
-    this.initMap();
-    this.filteredItems = [...this.sliderItems];
+    if (!this.mapInitialized) {
+      this.initMap();
+    }
   }
 
   ngAfterViewInit(): void {
-    // Initialize slider position
-    setTimeout(() => {
-      this.updateSliderPosition();
-    }, 100);
+    if (this.map && this.mapInitialized) {
+      setTimeout(() => this.map.invalidateSize(), 100);
+    }
   }
 
   ngOnDestroy(): void {
-    if (this.resizeTimeout) {
-      clearTimeout(this.resizeTimeout);
-    }
-    if (this.map) {
-      this.map.remove();
-    }
-  }
-
-  // Search functionality
-  onSearchChange(): void {
-    if (this.searchTerm.trim() === '') {
-      this.filteredItems = [...this.sliderItems];
-      this.showCard = true; // Mantém o card visível quando não há busca
-    } else {
-      this.filteredItems = this.sliderItems.filter(item =>
-        item.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-        item.location.toLowerCase().includes(this.searchTerm.toLowerCase())
-      );
-      this.showCard = this.filteredItems.length > 0;
-
-      // Reset to first slide when searching
-      if (this.showCard) {
-        this.currentSlide = 0;
-        this.updateSliderPosition();
-      }
-    }
-  }
-
-  clearSearch(): void {
-    this.searchTerm = '';
-    this.onSearchChange();
-  }
-
-  // Nova função para lidar com clique no card
-  onCardClick(item: SliderItem, index: number): void {
-    // Atualizar o slide atual
-    this.currentSlide = index;
-    this.updateSliderPosition();
-
-    // Mover o mapa para o local correspondente
-    if (this.map && item.coordinates) {
-      this.map.setView(item.coordinates, 15, {
-        animate: true,
-        duration: 0.8
-      });
-
-      // Abrir o popup do marcador
-      const marker = this.markers.get(item.id);
-      if (marker) {
-        setTimeout(() => {
-          marker.openPopup();
-        }, 500);
-      }
-    }
-  }
-
-  // Slider methods
-  goToSlide(index: number): void {
-    if (index >= 0 && index < this.filteredItems.length) {
-      this.currentSlide = index;
-      this.updateSliderPosition();
-
-      // Center map on selected location
-      const selectedItem = this.filteredItems[index];
-      if (this.map && selectedItem.coordinates) {
-        this.map.setView(selectedItem.coordinates, this.map.getZoom(), {
-          animate: true,
-          duration: 0.3
-        });
-      }
-    }
-  }
-
-  nextSlide(): void {
-    const nextIndex = (this.currentSlide + 1) % this.filteredItems.length;
-    this.goToSlide(nextIndex);
-  }
-
-  prevSlide(): void {
-    const prevIndex = this.currentSlide === 0 ? this.filteredItems.length - 1 : this.currentSlide - 1;
-    this.goToSlide(prevIndex);
-  }
-
-  private updateSliderPosition(): void {
-    if (this.cardSlider?.nativeElement && this.filteredItems.length > 0) {
-      const slideWidth = 100;
-      const translateX = -this.currentSlide * slideWidth;
-      this.cardSlider.nativeElement.style.transform = `translateX(${translateX}%)`;
-    }
-  }
-
-  // Touch events
-  onTouchStart(event: TouchEvent): void {
-    if (!this.showCard) return;
-
-    this.isDragging = true;
-    this.startX = event.touches[0].clientX;
-    this.currentX = this.startX;
-    this.startTransform = this.currentSlide * -100;
-
-    if (this.cardSlider?.nativeElement) {
-      this.cardSlider.nativeElement.style.transition = 'none';
-    }
-  }
-
-  onTouchMove(event: TouchEvent): void {
-    if (!this.isDragging || !this.showCard) return;
-
-    event.preventDefault();
-    this.currentX = event.touches[0].clientX;
-    const diffX = this.currentX - this.startX;
-    const dragPercent = (diffX / window.innerWidth) * 100;
-
-    if (this.cardSlider?.nativeElement) {
-      const newTransform = this.startTransform + dragPercent;
-      this.cardSlider.nativeElement.style.transform = `translateX(${newTransform}%)`;
-    }
-  }
-
-  onTouchEnd(event: TouchEvent): void {
-    if (!this.isDragging || !this.showCard) return;
-
-    this.isDragging = false;
-    const diffX = this.currentX - this.startX;
-
-    if (this.cardSlider?.nativeElement) {
-      this.cardSlider.nativeElement.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1)';
-    }
-
-    if (Math.abs(diffX) > this.threshold) {
-      if (diffX > 0) {
-        this.prevSlide();
-      } else {
-        this.nextSlide();
-      }
-    } else {
-      this.updateSliderPosition();
-    }
-  }
-
-  // Mouse events
-  onMouseDown(event: MouseEvent): void {
-    if (!this.showCard) return;
-
-    this.isDragging = true;
-    this.startX = event.clientX;
-    this.currentX = this.startX;
-    this.startTransform = this.currentSlide * -100;
-
-    if (this.cardSlider?.nativeElement) {
-      this.cardSlider.nativeElement.style.transition = 'none';
-    }
-
-    event.preventDefault();
-  }
-
-  onMouseMove(event: MouseEvent): void {
-    if (!this.isDragging || !this.showCard) return;
-
-    this.currentX = event.clientX;
-    const diffX = this.currentX - this.startX;
-    const dragPercent = (diffX / window.innerWidth) * 100;
-
-    if (this.cardSlider?.nativeElement) {
-      const newTransform = this.startTransform + dragPercent;
-      this.cardSlider.nativeElement.style.transform = `translateX(${newTransform}%)`;
-    }
-  }
-
-  onMouseEnd(event: MouseEvent): void {
-    if (!this.isDragging || !this.showCard) return;
-
-    this.isDragging = false;
-    const diffX = this.currentX - this.startX;
-
-    if (this.cardSlider?.nativeElement) {
-      this.cardSlider.nativeElement.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1)';
-    }
-
-    if (Math.abs(diffX) > this.threshold) {
-      if (diffX > 0) {
-        this.prevSlide();
-      } else {
-        this.nextSlide();
-      }
-    } else {
-      this.updateSliderPosition();
-    }
-  }
-
-  // Keyboard navigation
-  @HostListener('window:keydown', ['$event'])
-  onKeyDown(event: KeyboardEvent): void {
-    if (!this.showCard) return;
-
-    if (event.key === 'ArrowLeft') {
-      this.prevSlide();
-    } else if (event.key === 'ArrowRight') {
-      this.nextSlide();
-    } else if (event.key === 'Escape') {
-      this.clearSearch();
-    }
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    if (this.resizeTimeout) {
-      clearTimeout(this.resizeTimeout);
-    }
-
-    this.resizeTimeout = setTimeout(() => {
-      this.handleMapResize();
-      this.updateSliderPosition();
-    }, 250);
+    if (this.resizeTimeout) clearTimeout(this.resizeTimeout);
+    if (this.map) this.map.remove();
   }
 
   private initMap(): void {
-    // Definir limites rigorosos para Belém
+    if (this.mapInitialized && this.map) {
+      return;
+    }
+
     const belemBounds = L.latLngBounds(
-      L.latLng(-1.5200, -48.5500), // Southwest
-      L.latLng(-1.3800, -48.4000)  // Northeast
+      L.latLng(-1.52, -48.55),
+      L.latLng(-1.38, -48.4)
     );
 
-    const mapOptions = {
-      center: [-1.4558, -48.4902] as L.LatLngTuple,
-      zoom: 15,
-      minZoom: 14, // Zoom mínimo
-      maxZoom: 15, // Zoom máximo (limitado)
-      maxBounds: belemBounds, // Limites rígidos de Belém
-      maxBoundsViscosity: 1.0, // Impede sair dos limites
-      zoomControl: true,
-      attributionControl: true,
+    this.map = L.map('map', {
+      center: [-1.4502, -48.4849],
+      zoom: 14,
+      minZoom: 14,
+      maxZoom: 17,
+      maxBounds: belemBounds,
+      maxBoundsViscosity: 1.0,
+      zoomControl: false,
       touchZoom: true,
       doubleClickZoom: true,
       scrollWheelZoom: true,
       boxZoom: false,
       keyboard: true,
       dragging: true,
-      preferCanvas: false,
       zoomAnimation: true,
       fadeAnimation: true,
       markerZoomAnimation: true,
       inertia: true,
       inertiaDeceleration: 3000,
       inertiaMaxSpeed: 1500,
-    };
+      preferCanvas: true,
+    });
 
-    this.map = L.map('map', mapOptions);
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap contributors',
-      detectRetina: true,
-    }).addTo(this.map);
-
-    // Adicionar marcadores para os locais
+    // Cache tile layer
+    if (!this.tileLayer) {
+      this.tileLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; OpenStreetMap & Carto',
+        subdomains: 'abcd',
+        maxZoom: 20,
+        keepBuffer: 4,
+        updateWhenIdle: true,
+        updateWhenZooming: false,
+      });
+    }
+    
+    this.tileLayer.addTo(this.map);
     this.addLocationMarkers();
+    this.mapInitialized = true;
 
-    setTimeout(() => {
-      if (this.map) {
-        this.map.invalidateSize();
+    // Add map click listener to clear focus
+    this.map.on('click', (e: any) => {
+      if (!e.originalEvent.defaultPrevented) {
+        this.clearPolygonFocus();
       }
-    }, 100);
+    });
+  }
+
+  private addPinpoints(idFeira: string): void {
+    // Clear existing pinpoints
+    this.clearPinpoints();
+
+    // Only add pinpoints if there's a focused polygon
+    if (!this.focusedPolygon || this.focusedFeiraId !== idFeira) {
+      return;
+    }
+
+    const pinpoints = this.feiraPinpoints[idFeira] || [];
+
+    const customIcon = L.icon({
+      iconUrl: 'assets/pin.png',
+      iconSize: [26, 26],
+      iconAnchor: [16, 32],
+      popupAnchor: [0, -36],
+    });
+
+    pinpoints.forEach(point => {
+      const marker = L.marker(point.coords, { icon: customIcon }).addTo(this.map);
+      marker.bindPopup(`
+        <div style="text-align: center;">
+          <strong>${point.name}</strong><br>
+          <button onclick="window.location.href='/info/${point.idProduto}'" style="margin-top: 4px; padding: 4px 8px; font-size: 13px; background: #007AFF; color: white; border: none; border-radius: 4px; cursor: pointer;">
+            Ver loja
+          </button>
+        </div>
+      `);
+      this.pinpointMarkers.push(marker);
+    });
+  }
+
+  private clearPinpoints(): void {
+    this.pinpointMarkers.forEach(marker => this.map.removeLayer(marker));
+    this.pinpointMarkers = [];
+  }
+
+  onSearchChange(): void {
+    if (!this.searchTerm.trim()) {
+      this.clearPolygonFocus();
+      return;
+    }
+
+    const searchLower = this.searchTerm.toLowerCase().trim();
+    const feiraPolygons = this.getFeiraPolygons();
+    
+    const matchedFeira = feiraPolygons.find(feira => 
+      feira.name.toLowerCase().includes(searchLower) ||
+      feira.idFeira.toLowerCase().includes(searchLower)
+    );
+
+    if (matchedFeira) {
+      this.focusOnPolygon(matchedFeira.id, matchedFeira.idFeira);
+    }
+  }
+
+  private focusOnPolygon(polygonId: number, feiraId: string): void {
+    const polygon = this.markers.get(polygonId);
+    if (polygon) {
+      this.clearPolygonFocus();
+      
+      this.focusedPolygon = polygon;
+      this.focusedFeiraId = feiraId;
+      
+      // Highlight focused polygon
+      polygon.setStyle({
+        color: '#FF6B35',
+        weight: 3,
+        fillColor: '#FF6B35',
+        fillOpacity: 0.5,
+        opacity: 1,
+      });
+      
+      this.map.fitBounds(polygon.getBounds(), { maxZoom: 16 });
+      polygon.openPopup();
+      this.addPinpoints(feiraId);
+    }
+  }
+
+  private clearPolygonFocus(): void {
+    if (this.focusedPolygon) {
+      // Close any open popups
+      this.focusedPolygon.closePopup();
+      this.map.closePopup();
+      
+      // Reset to default style
+      this.focusedPolygon.setStyle({
+        color: '#007AFF',
+        weight: 2,
+        fillColor: '#007AFF',
+        fillOpacity: 0.3,
+        opacity: 0.8,
+      });
+      
+      this.focusedPolygon = null;
+      this.focusedFeiraId = null;
+      
+      // Clear pinpoints when focus is cleared
+      this.clearPinpoints();
+    }
+  }
+
+  public isFocused(feiraId: string): boolean {
+    return this.focusedFeiraId === feiraId;
+  }
+
+  private getFeiraPolygons() {
+    return [
+      {
+        id: 1,
+        idFeira: 'vero-peso',
+        name: 'Ver-o-Peso',
+        location: 'Belém',
+        coordinates: [
+          [-1.4528, -48.5039],
+          [-1.4524, -48.5042],
+          [-1.4502, -48.5018],
+          [-1.4504, -48.5015],
+        ] as [number, number][],
+      },
+      {
+        id: 2,
+        idFeira: 'comercio',
+        name: 'Comércio',
+        location: 'Belém',
+        coordinates: [
+          [-1.4505, -48.5014],
+          [-1.4528, -48.5037],
+          [-1.4556, -48.5017],
+          [-1.4535, -48.5001],
+          [-1.4547, -48.4982],
+          [-1.4521, -48.4961],
+          [-1.4485, -48.4985],
+        ] as [number, number][],
+      },
+      {
+        id: 3,
+        idFeira: 'sao-bras',
+        name: 'Mercado São Brás',
+        location: 'Belém',
+        coordinates: [
+          [-1.4507, -48.4680],
+          [-1.4520, -48.4678],
+          [-1.4520, -48.4688],
+          [-1.4510, -48.4689],
+        ] as [number, number][],
+      },
+    ];
   }
 
   private addLocationMarkers(): void {
-    const customIcon = L.icon({
-      iconUrl: 'assets/pin.png',
-      iconSize: [32, 40],
-      iconAnchor: [16, 40],
-      popupAnchor: [0, -35]
-    });
+    const feiraPolygons = this.getFeiraPolygons();
 
-    this.sliderItems.forEach((item) => {
-      const marker = L.marker(item.coordinates, { icon: customIcon })
-        .addTo(this.map)
-        .bindPopup(`
-        <div style="text-align: center; padding: 5px;">
-          <h4 style="margin: 0 0 5px 0;">${item.name}</h4>
-          <p style="margin: 0; color: #666;">${item.location}</p>
-          <div style="margin-top: 5px;">
-            <span style="color: #007AFF;">⭐ ${item.rating}/5</span>
-            <span style="margin-left: 10px; color: ${item.isOpen ? '#22c55e' : '#ef4444'};">
-              ${item.isOpen ? '🟢 Aberto' : '🔴 Fechado'}
-            </span>
-          </div>
+    feiraPolygons.forEach(item => {
+      const polygon = L.polygon(item.coordinates, {
+        color: '#007AFF',
+        weight: 2,
+        fillColor: '#007AFF',
+        fillOpacity: 0.3,
+        opacity: 0.8,
+      }).addTo(this.map);
+
+      polygon.bindPopup(`
+        <div style="text-align: center; padding: 8px; font-family: Arial, sans-serif;">
+          <h4 style="margin: 0 0 5px 0; color: #333;">${item.name}</h4>
+          <button onclick="window.location.href='/market-stores/${item.idFeira}'" style="margin-top: 4px; padding: 4px 8px; font-size: 13px; background: #007AFF; color: white; border: none; border-radius: 4px; cursor: pointer;">
+            Ver loja
+          </button>
         </div>
-      `);
-
-      this.markers.set(item.id, marker);
-
-      marker.on('click', () => {
-        const itemIndex = this.filteredItems.findIndex(filteredItem => filteredItem.id === item.id);
-        if (itemIndex !== -1) {
-          this.currentSlide = itemIndex;
-          this.updateSliderPosition();
-        }
-
-        if (!this.filteredItems.some(filteredItem => filteredItem.id === item.id)) {
-          this.searchTerm = item.name;
-          this.onSearchChange();
-          this.currentSlide = 0;
-          this.updateSliderPosition();
-        }
+      `, {
+        autoPan: true,
+        autoPanPadding: [10, 30],
+        offset: [0, -40],
       });
+
+      polygon.on('click', (e: any) => {
+        e.originalEvent.preventDefault();
+        this.focusOnPolygon(item.id, item.idFeira);
+      });
+
+      this.markers.set(item.id, polygon);
     });
   }
 
+  @HostListener('window:resize', ['$event'])
+  onResize(): void {
+    if (this.resizeTimeout) {
+      clearTimeout(this.resizeTimeout);
+    }
+    this.resizeTimeout = setTimeout(() => {
+      this.handleMapResize();
+    }, 250);
+  }
 
   private handleMapResize(): void {
     if (this.map) {
